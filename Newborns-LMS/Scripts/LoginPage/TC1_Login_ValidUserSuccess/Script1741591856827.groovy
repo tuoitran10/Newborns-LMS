@@ -54,7 +54,7 @@ PageActions.setText(findTestObject('Object Repository/LoginPage/txtPassword'),Ap
 'Click to Login Button'
 PageActions.click(findTestObject('Object Repository/LoginPage/btnLogin'))
 'Expected Result:'
-DashboardPage.verifyDashboardPresent(
+DashboardPage.verifyDashboardPresent()
 
 
 
