@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC1_Login_ValidUserSuccess</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>244b0ebd-8e3b-40cc-a8f0-a920c27fe93d</testCaseGuid>
+   <variableLinks>
+      <testDataLinkId></testDataLinkId>
+      <type>DEFAULT</type>
+      <value></value>
+      <variableId>589c60a0-0595-41ac-b8b6-7ff7c09dbbf5</variableId>
+   </variableLinks>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>589c60a0-0595-41ac-b8b6-7ff7c09dbbf5</id>
+      <masked>false</masked>
+      <name>browserType</name>
+   </variable>
+</TestCaseEntity>
