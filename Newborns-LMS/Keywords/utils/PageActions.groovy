@@ -29,14 +29,15 @@ public class PageActions {
 	 * Click on an element on the page
 	 * @param testObject - TestObject of the element to click
 	 */
+	@Keyword
 	static void click(TestObject testObject) {
-	 if (WebUI.verifyElementPresent(testObject, 10, FailureHandling.OPTIONAL)) {
-        WebUI.waitForElementClickable(testObject, 10)
-        WebUI.click(testObject)
-        KeywordUtil.logInfo("Clicked on element: " + testObject.getObjectId())
-    } else {
-        KeywordUtil.markWarning("Element not found: " + testObject.getObjectId())
-    }
+		if (WebUI.verifyElementPresent(testObject, 10, FailureHandling.OPTIONAL)) {
+			WebUI.waitForElementClickable(testObject, 10)
+			WebUI.click(testObject)
+			KeywordUtil.logInfo("Clicked on element: " + testObject.getObjectId())
+		} else {
+			KeywordUtil.markWarning("Element not found: " + testObject.getObjectId())
+		}
 	}
 
 	/**
@@ -44,6 +45,7 @@ public class PageActions {
 	 * @param testObject - TestObject of the input field
 	 * @param text - Text to enter
 	 */
+	@Keyword
 	static void setText(TestObject testObject, String text) {
 		WebUI.waitForElementVisible(testObject, 10)
 		WebUI.setText(testObject, text)
@@ -54,15 +56,18 @@ public class PageActions {
 	 * @param testObject - TestObject of the element
 	 * @return String - Retrieved text
 	 */
+	@Keyword
 	static String getText(TestObject testObject) {
 		WebUI.waitForElementVisible(testObject, 10)
 		return WebUI.getText(testObject)
 	}
 
+
 	/**
 	 * Clear text from an input field
 	 * @param testObject - TestObject of the input field
 	 */
+	@Keyword
 	static void clearText(TestObject testObject) {
 		WebUI.waitForElementVisible(testObject, 10)
 		WebUI.clearText(testObject)
@@ -73,6 +78,7 @@ public class PageActions {
 	 * @param testObject - TestObject of the element
 	 * @return boolean - true if the element is visible, false otherwise
 	 */
+	@Keyword
 	static boolean isElementVisible(TestObject testObject) {
 		return WebUI.waitForElementVisible(testObject, 10)
 	}
@@ -83,6 +89,7 @@ public class PageActions {
 	 * @param attributeName - Name of the attribute to retrieve
 	 * @return String - Value of the attribute
 	 */
+	@Keyword
 	static String getAttributeValue(TestObject testObject, String attributeName) {
 		WebUI.waitForElementVisible(testObject, 10)
 		return WebUI.getAttribute(testObject, attributeName)
@@ -94,6 +101,7 @@ public class PageActions {
 	 * @param testObject - TestObject of the element
 	 * @param keys - Keys to send
 	 */
+	@Keyword
 	static void sendKeys(TestObject testObject, String keys) {
 		WebUI.waitForElementVisible(testObject, 10)
 		WebUI.sendKeys(testObject, keys)
@@ -105,6 +113,7 @@ public class PageActions {
 	 * @param actual - Actual value
 	 * @param expected - Expected value
 	 */
+	@Keyword
 	static void verifyExpectedResult(String actual, String expected) {
 		if (actual != expected) {
 			KeywordUtil.markFailed("❌ Verification failed: Expected = '${expected}', but got = '${actual}'")
@@ -119,7 +128,7 @@ public class PageActions {
 	 * Navigate to URL
 	 * @param url - link URL to navigate
 	 */
-
+	@Keyword
 	static void NavigateURL(String url) {
 		try {
 			WebUI.openBrowser('')
@@ -134,7 +143,7 @@ public class PageActions {
 	 *  Click Using JS
 	 * @param testObject - testObject need to click
 	 */
-
+	@Keyword
 	static void clickUsingJS(TestObject testObject) {
 		try {
 			WebElement element = WebUI.findWebElement(testObject)

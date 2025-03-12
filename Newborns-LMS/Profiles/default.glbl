@@ -16,7 +16,12 @@
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>'Kms@2023'</initValue>
+      <initValue>'iwhukDKVsG1ijANb5XEj0Q=='</initValue>
       <name>Password</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>'UjZvumqIEoYHZjHR5Ro8cA=='</initValue>
+      <name>KeyPassword</name>
    </GlobalVariableEntity>
 </GlobalVariableEntities>

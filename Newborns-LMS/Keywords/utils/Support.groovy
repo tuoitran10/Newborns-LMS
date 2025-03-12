@@ -1,4 +1,4 @@
-package pages
+package utils
 
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
@@ -17,23 +17,37 @@ import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
+import javax.crypto.Cipher
+import javax.crypto.spec.SecretKeySpec
+import java.util.Base64
+
 import internal.GlobalVariable
-import utils.PageActions
-import com.kms.katalon.core.util.KeywordUtil
 
-
-
-public class DashboardPage {
+public class Support {
 
 	/**
-	 * Verify the Dashboard page is displayed
+	 * Support decrypt password
+	 * @param testObject - TestObject of the element to click
 	 */
 	@Keyword
-	static void verifyDashboardPresent() {
+	static String decrypt(String encryptedPasswordBase64, String keyBase64) {
 		try {
-			PageActions.isElementVisible(findTestObject('Object Repository/DashboardPage/imgLogo'))
+			// Decode the AES key from Base64
+			byte[] decodedKey = Base64.getDecoder().decode(keyBase64)
+			SecretKeySpec secretKeySpec = new SecretKeySpec(decodedKey, "AES")
+
+			// Initialize AES Cipher for decryption
+			Cipher cipher = Cipher.getInstance("AES")
+			cipher.init(Cipher.DECRYPT_MODE, secretKeySpec)
+
+			// Decode and decrypt the password
+			byte[] encryptedPassword = Base64.getDecoder().decode(encryptedPasswordBase64)
+			byte[] decryptedPassword = cipher.doFinal(encryptedPassword)
+
+			return new String(decryptedPassword, "UTF-8")
 		} catch (Exception e) {
-			KeywordUtil.markWarning("Dashboard is not found")
+			println("Error during decryption: " + e.getMessage())
+			return null
 		}
 	}
 }

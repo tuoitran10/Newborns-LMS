@@ -20,11 +20,13 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import com.kms.katalon.core.util.KeywordUtil
 import internal.GlobalVariable as App
 import utils.PageActions
+import utils.Support
 
 public class LoginPage {
 	/**
 	 * Verify the Login page is displayed
 	 */
+	@Keyword
 	static void verifyLoginPageHeaderIsCorrect(String expectedHeader) {
 		try {
 			String actualHeader = PageActions.getText(findTestObject('Object Repository/LoginPage/txtLogin'))
@@ -38,6 +40,7 @@ public class LoginPage {
 	/**
 	 * Verify the Email label is displayed
 	 */
+	@Keyword
 	static void verifyEmailLablelIsCorrect(String expectedLabel) {
 		try {
 			String actualHeader = PageActions.getText(findTestObject('Object Repository/LoginPage/lblEmail'))
@@ -51,6 +54,7 @@ public class LoginPage {
 	/**
 	 * Verify the Password label is displayed
 	 */
+	@Keyword
 	static void verifyPasswordlLablelIsCorrect(String expectedLabel) {
 		try {
 			String actualHeader = PageActions.getText(findTestObject('Object Repository/LoginPage/lblPassword'))
@@ -64,7 +68,34 @@ public class LoginPage {
 	/**
 	 * Input the Password to Login Page
 	 */
-	static void inputPassword() {
-		String decryptedPassword = WebUI.setEncryptedText(findTestObject('Object Repository/LoginPage/txtPassword'), App.Password)
+	@Keyword
+	static void inputValidPassword() {
+		String password=Support.decrypt(App.Password,App.KeyPassword)
+		PageActions.setText(findTestObject('Object Repository/LoginPage/txtPassword'), password)
+	}
+
+
+	/**
+	 * Input the Email to Login Page
+	 */
+	@Keyword
+	static void inputEmail(String email) {
+		PageActions.setText(findTestObject('Object Repository/LoginPage/txtEmail'),email)
+	}
+
+	/**
+	 * Input the Password to Login Page
+	 */
+	@Keyword
+	static void inputInValidPassword(String password) {
+		PageActions.setText(findTestObject('Object Repository/LoginPage/txtPassword'), password)
+	}
+
+	/**
+	 * Input the Password to Login Page
+	 */
+	@Keyword
+	static void aler(String password) {
+		PageActions.setText(findTestObject('Object Repository/LoginPage/txtPassword'), password)
 	}
 }
